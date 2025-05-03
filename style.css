@@ -1,0 +1,76 @@
+body {
+  background: #111;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 70vh;
+  width: 80vw;
+  flex-wrap: wrap;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.score {
+  position: fixed;
+  background: #222;
+  color: #fff;
+  top: 20px;
+  left: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.gameOver {
+  width: 260px;
+  height: 180px;
+  background: rgba(0, 0, 0, 0.85);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  place-items: center;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  text-align: center;
+  color: #fff;
+  z-index: 100;
+}
+
+.gameOver button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.gameOver button:hover {
+  background: #ddd;
+}
+
+.box{
+  min-height: 30px;
+  min-width: 30px;
+  background: white;
+  box-sizing: border-box;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  transform-origin: 50% 50%;
+}
