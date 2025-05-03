@@ -23,6 +23,10 @@ let keyMap = {
     D: "r",
 };
 
+//for preloading image. Unused var..
+let img = new Image();
+img.src = "https://jtuluve.github.io/files-host/snake-head3.png";
+
 for (let i = 0; i < ylen; i++) {
     places[i] = [];
     for (let j = 0; j < xlen; j++) {
