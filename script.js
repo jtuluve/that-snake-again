@@ -1,3 +1,7 @@
+//preload...
+new Image().src = "https://jtuluve.github.io/files-host/snake-head3.png";
+new Image().src = "https://jtuluve.github.io/files-host/snake-fruit2.png";
+
 let cont = document.querySelector(".container");
 let xlen = parseInt(cont.offsetWidth / 30),
     ylen = parseInt(cont.offsetHeight / 30);
@@ -22,10 +26,6 @@ let keyMap = {
     d: "r",
     D: "r",
 };
-
-//for preloading image. Unused var..
-let img = new Image();
-img.src = "https://jtuluve.github.io/files-host/snake-head3.png";
 
 for (let i = 0; i < ylen; i++) {
     places[i] = [];
@@ -74,7 +74,7 @@ class Box {
 
 let scoreBox = new Box(
     ...scoreAt,
-    "url('https://jtuluve.github.io/files-host/snake-fruit.png')"
+    "url('https://jtuluve.github.io/files-host/snake-fruit2.png')"
 );
 
 function move(dir) {
@@ -102,6 +102,9 @@ function keydown(e) {
         return;
     dir = newDir;
     movedOnce = false;
+    setTimeout(() => {
+        movedOnce = true;
+    }, 100);
 }
 
 function collisionCheck() {
@@ -139,7 +142,6 @@ function start(e) {
 
 function animate() {
     if (gameOver) return;
-    movedOnce = true;
     move(dir);
     collisionCheck();
     checkPoint();
@@ -188,9 +190,9 @@ function restart() {
     scoreBox.moveTo(scoreAt[0], scoreAt[1], true);
     document.querySelector(".gameOver").style.display = "none";
     document.querySelector(".score").innerText = 0;
+    movedOnce = true;
     window.removeEventListener("keydown", keydown);
     window.addEventListener("keydown", start);
 }
 
 restart();
-document.querySelector(".gameOver button").addEventListener("click", restart);
