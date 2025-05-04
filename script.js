@@ -74,7 +74,7 @@ class Box {
 
 let scoreBox = new Box(
     ...scoreAt,
-    "url('https://jtuluve.github.io/files-host/snake-fruit2.png')"
+    "url('https://jtuluve.github.io/files-host/snake-fruit2.png') white"
 );
 
 function move(dir) {
@@ -91,15 +91,23 @@ function move(dir) {
 
 function keydown(e) {
     let newDir = keyMap[e.key];
-    if (!newDir || !movedOnce) return;
+    if (!newDir) return;
     e.preventDefault();
     if (
         (newDir == "u" && dir == "d") ||
         (newDir == "d" && dir == "u") ||
         (newDir == "l" && dir == "r") ||
-        (newDir == "r" && dir == "l")
+        (newDir == "r" && dir == "l") ||
+        (newDir == "u" && dir == "u") ||
+        (newDir == "d" && dir == "d") ||
+        (newDir == "l" && dir == "l") ||
+        (newDir == "r" && dir == "r")
     )
         return;
+    if (!movedOnce)
+        return setTimeout(() => {
+            dir = newDir;
+        }, 100);
     dir = newDir;
     movedOnce = false;
     setTimeout(() => {
@@ -126,14 +134,18 @@ function start(e) {
     dir = ndir;
     e.preventDefault();
     let i = 0;
-    add(0, 0, "url('https://jtuluve.github.io/files-host/snake-head3.png')");
+    add(
+        0,
+        0,
+        "url('https://jtuluve.github.io/files-host/snake-head3.png') white"
+    );
     let int = setInterval(() => {
         add(0, 0, "#5b7af9");
         move(dir);
         i++;
         if (i >= 1) {
             clearInterval(int);
-            animate();
+            requestAnimationFrame(animate);
         }
     }, 100);
     window.removeEventListener("keydown", start);
@@ -153,7 +165,7 @@ function animate() {
             : dir == "r"
             ? "-90deg"
             : "90deg";
-    setTimeout(animate, 100);
+    setTimeout(() => requestAnimationFrame(animate), 100);
 }
 
 function checkPoint() {
